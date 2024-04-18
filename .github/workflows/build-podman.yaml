@@ -11,6 +11,10 @@ on:
     branches:
       - 'master'
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   BuildBase:
     runs-on: ubuntu-20.04
@@ -59,7 +63,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
-        password: ${{ secrets.GHCR_TOKEN }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build and push Docker images
       uses: docker/build-push-action@v2.4.0
       if: github.repository_owner == 'kubesphere'
@@ -69,7 +73,7 @@ jobs:
         tags: ${{ steps.meta.outputs.tags }}
         push: ${{ github.event_name != 'pull_request' }}
         labels: ${{ steps.meta.outputs.labels }}
-        platforms: linux/amd64
+        platforms: linux/amd64,linux/arm64
     - name: Build and push Docker images for Contributors
       uses: docker/build-push-action@v2.4.0
       if: github.repository_owner != 'kubesphere'
@@ -79,11 +83,11 @@ jobs:
         tags: ${{ steps.metaContributors.outputs.tags }}
         push: ${{ github.event_name != 'pull_request' }}
         labels: ${{ steps.metaContributors.outputs.labels }}
-        platforms: linux/amd64
+        platforms: linux/amd64,linux/arm64
 
   BuildGo:
     needs: BuildBase
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
     - name: Docker meta for KubeSphere
@@ -129,7 +133,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
-        password: ${{ secrets.GHCR_TOKEN }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build and push Docker images
       uses: docker/build-push-action@v2.4.0
       if: github.repository_owner == 'kubesphere'
@@ -139,7 +143,7 @@ jobs:
         tags: ${{ steps.meta.outputs.tags }}
         push: ${{ github.event_name != 'pull_request' }}
         labels: ${{ steps.meta.outputs.labels }}
-        platforms: linux/amd64
+        platforms: linux/amd64,linux/arm64
     - name: Build and push Docker images for Contributors
       uses: docker/build-push-action@v2.4.0
       if: github.repository_owner != 'kubesphere'
@@ -149,11 +153,11 @@ jobs:
         tags: ${{ steps.metaContributors.outputs.tags }}
         push: ${{ github.event_name != 'pull_request' }}
         labels: ${{ steps.metaContributors.outputs.labels }}
-        platforms: linux/amd64
+        platforms: linux/amd64,linux/arm64
 
   BuildMaven:
     needs: BuildBase
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
     - name: Docker meta for KubeSphere
@@ -199,7 +203,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
-        password: ${{ secrets.GHCR_TOKEN }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build and push Docker images
       uses: docker/build-push-action@v2.4.0
       if: github.repository_owner == 'kubesphere'
@@ -209,7 +213,7 @@ jobs:
         tags: ${{ steps.meta.outputs.tags }}
         push: ${{ github.event_name != 'pull_request' }}
         labels: ${{ steps.meta.outputs.labels }}
-        platforms: linux/amd64
+        platforms: linux/amd64,linux/arm64
     - name: Build and push Docker images for Contributors
       uses: docker/build-push-action@v2.4.0
       if: github.repository_owner != 'kubesphere'
@@ -219,11 +223,11 @@ jobs:
         tags: ${{ steps.metaContributors.outputs.tags }}
         push: ${{ github.event_name != 'pull_request' }}
         labels: ${{ steps.metaContributors.outputs.labels }}
-        platforms: linux/amd64
+        platforms: linux/amd64,linux/arm64
 
   BuildNodeJs:
     needs: BuildBase
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
     - name: Docker meta for KubeSphere
@@ -269,7 +273,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
-        password: ${{ secrets.GHCR_TOKEN }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build and push Docker images
       uses: docker/build-push-action@v2.4.0
       if: github.repository_owner == 'kubesphere'
@@ -279,7 +283,7 @@ jobs:
         tags: ${{ steps.meta.outputs.tags }}
         push: ${{ github.event_name != 'pull_request' }}
         labels: ${{ steps.meta.outputs.labels }}
-        platforms: linux/amd64
+        platforms: linux/amd64,linux/arm64
     - name: Build and push Docker images for Contributors
       uses: docker/build-push-action@v2.4.0
       if: github.repository_owner != 'kubesphere'
@@ -289,11 +293,11 @@ jobs:
         tags: ${{ steps.metaContributors.outputs.tags }}
         push: ${{ github.event_name != 'pull_request' }}
         labels: ${{ steps.metaContributors.outputs.labels }}
-        platforms: linux/amd64
+        platforms: linux/amd64,linux/arm64
 
   BuildPython:
     needs: BuildBase
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - name: Docker meta for KubeSphere
@@ -339,7 +343,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.GHCR_TOKEN }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push Docker images
         uses: docker/build-push-action@v2.4.0
         if: github.repository_owner == 'kubesphere'
@@ -349,7 +353,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           push: ${{ github.event_name != 'pull_request' }}
           labels: ${{ steps.meta.outputs.labels }}
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
       - name: Build and push Docker images for Contributors
         uses: docker/build-push-action@v2.4.0
         if: github.repository_owner != 'kubesphere'
@@ -359,4 +363,4 @@ jobs:
           tags: ${{ steps.metaContributors.outputs.tags }}
           push: ${{ github.event_name != 'pull_request' }}
           labels: ${{ steps.metaContributors.outputs.labels }}
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
