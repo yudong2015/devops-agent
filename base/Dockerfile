@@ -3,13 +3,10 @@ FROM ubuntu:jammy-20240405
 
 # utils
 RUN apt-get update && \
-  apt-get install -y unzip \
-  which \
-  make \
+  apt-get install -y zip \
+  build-essential \
   curl \
   wget \
-  zip \
-  bzip2 \
   git && \
   apt-get clean
 
