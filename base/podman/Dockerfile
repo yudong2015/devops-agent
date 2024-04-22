@@ -5,12 +5,28 @@ FROM ubuntu:jammy-20240405
 # utils
 RUN apt-get update && \
   apt-get install -y zip \
-  build-essential \
-  curl \
-  wget \
-  git \
-  podman && \
-  apt-get clean
+  RUN apt-get update && \
+      apt-get install -y zip \
+         build-essential \
+         curl \
+         wget \
+         libncurses5-dev \
+         openssl \
+         libssl-dev \
+         build-essential \
+         pkg-config \
+         libc6-dev \
+         bison \
+         flex \
+         libelf-dev \
+         zlib1g-dev \
+         minizip \
+         libidn11-dev \
+         qttools5-dev \
+         liblz4-tool
+         git && \
+         podman && \
+         apt-get clean
 
 # USER jenkins
 WORKDIR /home/jenkins
