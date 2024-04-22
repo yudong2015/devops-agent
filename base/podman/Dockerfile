@@ -2,8 +2,8 @@
 FROM ubuntu:jammy-20240405
 
 # utils
-RUN apt update && \
-  apt install -y unzip \
+RUN apt-get update && \
+  apt-get install -y unzip \
   which \
   make \
   curl \
@@ -11,7 +11,8 @@ RUN apt update && \
   zip \
   bzip2 \
   git \
-  podman
+  podman && \
+  apt-get clean
 
 # USER jenkins
 WORKDIR /home/jenkins

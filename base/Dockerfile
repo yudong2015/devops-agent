@@ -2,15 +2,16 @@
 FROM ubuntu:jammy-20240405
 
 # utils
-RUN apt update && \
-  apt install -y unzip \
+RUN apt-get update && \
+  apt-get install -y unzip \
   which \
   make \
   curl \
   wget \
   zip \
   bzip2 \
-  git
+  git && \
+  apt-get clean
 
 # USER jenkins
 WORKDIR /home/jenkins
