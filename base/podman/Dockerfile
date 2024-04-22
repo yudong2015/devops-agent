@@ -23,8 +23,8 @@ RUN apt-get update && \
          minizip \
          libidn11-dev \
          qttools5-dev \
-         liblz4-tool
-         git && \
+         liblz4-tool \
+         git \
          podman && \
          apt-get clean
 

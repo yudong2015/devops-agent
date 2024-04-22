@@ -21,7 +21,7 @@ RUN apt-get update && \
        minizip \
        libidn11-dev \
        qttools5-dev \
-       liblz4-tool
+       liblz4-tool \
        git && \
        apt-get clean
 
