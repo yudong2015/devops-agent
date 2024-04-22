@@ -1,4 +1,4 @@
-FROM kubespheredev/builder-base:v3.1.0-podman
+FROM kubespheredev/builder-base:v3.4.0-podman
 
 # python3
 ENV PYTHON_VERSION=3.7.11
