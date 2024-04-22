@@ -1,4 +1,5 @@
 # ubuntu:jammy-20240405 is a fixed version for ubuntu:22.04
+# requirements: docker version > 20.10.9
 FROM ubuntu:jammy-20240405
 
 # utils
