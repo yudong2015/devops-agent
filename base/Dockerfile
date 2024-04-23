@@ -27,7 +27,7 @@ RUN apt-get update && \
        git && \
        apt-get clean
 
-# USER jenkins
+USER jenkins
 WORKDIR /home/jenkins
 
 ENV SONAR_SCANNER_VERSION 3.3.0.1492
