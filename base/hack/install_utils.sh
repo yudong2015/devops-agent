@@ -93,3 +93,17 @@ else
   echo "do not support this arch"
   exit 1
 fi
+
+# yq
+YQ_VERSION=v4.43.1
+if [[ ${ARCH} == 'x86_64' ]]; then
+  curl -fL https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64.tar.gz | tar xzv && \
+  mv yq_linux_amd64 /usr/bin/yq
+elif [[ ${ARCH} == 'aarch64' ]]
+then
+  curl -fL https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_arm64.tar.gz | tar xzv && \
+  mv yq_linux_arm64 /usr/bin/yq
+else
+  echo "do not support this arch"
+  exit 1
+fi
