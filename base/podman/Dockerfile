@@ -3,8 +3,8 @@
 FROM ubuntu:jammy-20240405
 
 # utils
-RUN DEBIAN_FRONTEND=noninteractive \
-    apt-get update && \
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive \
     apt-get install -y \
         tzdata \
         zip \
@@ -32,7 +32,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
         && \
     apt-get clean
 
-USER jenkins
+# USER jenkins
 WORKDIR /home/jenkins
 
 ENV SONAR_SCANNER_VERSION 3.3.0.1492
