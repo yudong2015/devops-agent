@@ -3,30 +3,34 @@
 FROM ubuntu:jammy-20240405
 
 # utils
-RUN apt-get update && \
-  apt-get install -y zip \
-     build-essential \
-     curl \
-     wget \
-     jq \
-     vim \
-     libncurses5-dev \
-     openssl \
-     libssl-dev \
-     build-essential \
-     pkg-config \
-     libc6-dev \
-     bison \
-     flex \
-     libelf-dev \
-     zlib1g-dev \
-     minizip \
-     libidn11-dev \
-     qttools5-dev \
-     liblz4-tool \
-     git \
-     podman && \
-     apt-get clean
+RUN DEBIAN_FRONTEND=noninteractive \
+    apt-get update && \
+    apt-get install -y \
+        tzdata \
+        zip \
+        curl \
+        wget \
+        jq \
+        vim \
+        build-essential \
+        libncurses5-dev \
+        openssl \
+        libssl-dev \
+        build-essential \
+        pkg-config \
+        libc6-dev \
+        bison \
+        flex \
+        libelf-dev \
+        zlib1g-dev \
+        minizip \
+        libidn11-dev \
+        qttools5-dev \
+        liblz4-tool \
+        git \
+        podman \
+        && \
+    apt-get clean
 
 USER jenkins
 WORKDIR /home/jenkins
